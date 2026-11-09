@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Vulnerabilidad de seguridad / Security vulnerability
+    url: https://github.com/majixgroup/majix-tools/security/advisories/new
+    about: Informa de forma privada, no abras una incidencia pública. / Report privately, do not open a public issue.
+  - name: Documentación / Documentation
+    url: https://majixlab.com/open-source/majix-tools/docs
+    about: Guías en 6 idiomas. / Guides in 6 languages.

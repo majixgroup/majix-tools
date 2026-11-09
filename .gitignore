@@ -1,0 +1,5 @@
+node_modules/
+.construir/
+*.tgz
+.DS_Store
+test/.tmp/
