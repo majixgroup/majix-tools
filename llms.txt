@@ -1,7 +1,7 @@
 # MAJIX Tools
 
-> Panel de desarrollo gratis y de código abierto (MIT) para webs con Vite. Mide Web Vitals, archivos, consola, red, rutas y otras webs mientras construyes, y, con los planes Plus y Pro, muestra el rendimiento en tiempo real en el panel de MAJIX y lo contrasta con el dominio publicado. Cero bytes en producción. Preview 0.2.0, aún no publicada en npm.
-> A free, open-source (MIT) dev panel for Vite sites. Measures Web Vitals, files, console, network, routes and other sites while you build and, with the Plus and Pro plans, shows performance in real time in the MAJIX dashboard and compares it with the published domain. Zero bytes in production. Preview 0.2.0, not yet on npm.
+> Panel de desarrollo gratis y de código abierto (MIT) para webs con Vite. Mide Web Vitals, archivos, consola, red, rutas y otras webs mientras construyes, y, con los planes Plus y Pro, muestra el rendimiento en tiempo real en el panel de MAJIX y lo contrasta con el dominio publicado. Cero bytes en producción. Preview 0.2.1, aún no publicada en npm.
+> A free, open-source (MIT) dev panel for Vite sites. Measures Web Vitals, files, console, network, routes and other sites while you build and, with the Plus and Pro plans, shows performance in real time in the MAJIX dashboard and compares it with the published domain. Zero bytes in production. Preview 0.2.1, not yet on npm.
 
 ## Instalar / Install
 - `npx github:majixgroup/majix-tools init` (instala desde GitHub, sin npm ni nada global / installs from GitHub; Node ≥ 18.18, Vite ≥ 5; no Next.js). `--dry-run` para ver los cambios. `npx majix-tools remove` lo deshace byte a byte.

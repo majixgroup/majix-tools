@@ -1,4 +1,11 @@
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 
 /* ---------------------------------------------------------------------- *
  * LOS IDIOMAS DEL PANEL
@@ -33,11 +40,14 @@ const es = {
   "panel.enLinkedin": "MAJIX en LinkedIn",
 
   "tab.dashboard": "Dashboard",
-  "tab.dashboard.desc": "Vista general: puntuaciones, evolución y rendimiento por página",
+  "tab.dashboard.desc":
+    "Vista general: puntuaciones, evolución y rendimiento por página",
   "tab.rendimiento": "Rendimiento",
-  "tab.rendimiento.desc": "Core Web Vitals y fotogramas de esta página, en vivo",
+  "tab.rendimiento.desc":
+    "Core Web Vitals y fotogramas de esta página, en vivo",
   "tab.searchConsole": "Search Console",
-  "tab.searchConsole.desc": "Clics, impresiones, CTR y posición de tu web en Google",
+  "tab.searchConsole.desc":
+    "Clics, impresiones, CTR y posición de tu web en Google",
   "tab.archivos": "Archivos",
   "tab.archivos.desc": "El árbol del proyecto con el peso real de cada fichero",
   "tab.consola": "Consola y red",
@@ -45,7 +55,8 @@ const es = {
   "tab.rutas": "Rutas",
   "tab.rutas.desc": "Enlaces internos de la página y el sitemap.xml",
   "tab.otrasWebs": "Otras webs",
-  "tab.otrasWebs.desc": "Informe HTTP real de cualquier web: respuesta, seguridad, peso",
+  "tab.otrasWebs.desc":
+    "Informe HTTP real de cualquier web: respuesta, seguridad, peso",
 
   // ── Niveles ──
   "nivel.bien": "Bueno",
@@ -53,7 +64,7 @@ const es = {
   "nivel.mal": "Malo",
   "nivel.esperando": "Esperando…",
   "nivel.noSoportado": "No disponible",
-  "noSoportado": "Tu navegador no lo mide (prueba en Chrome o Edge)",
+  noSoportado: "Tu navegador no lo mide (prueba en Chrome o Edge)",
 
   // ── Comunes ──
   actualizar: "Actualizar",
@@ -66,7 +77,9 @@ const es = {
   "dash.titulo": "Dashboard",
   "dash.soloEsta": "Esta carga",
   "dash.conAnteriores": (n: number) =>
-    n === 1 ? "Esta carga y la anterior, guardadas en este navegador" : `Esta carga y las ${n} anteriores, guardadas en este navegador`,
+    n === 1
+      ? "Esta carga y la anterior, guardadas en este navegador"
+      : `Esta carga y las ${n} anteriores, guardadas en este navegador`,
   "dash.conAnterioresRecorte": (visibles: number, total: number) =>
     `Esta carga y las ${visibles} anteriores (de ${total} guardadas en este navegador)`,
   "dash.curva": "puntuación con la curva de Lighthouse",
@@ -84,7 +97,8 @@ const es = {
     "Cada carga de página deja una muestra cuando la ocultas: al recargar, al cambiar de pestaña o al cerrarla. Recarga un par de veces y la evolución aparece aquí.",
   "dash.trafico": "Tráfico",
   "dash.porPagina": "Rendimiento por página",
-  "dash.porPagina.nota": "LCP medio por página de entrada, de tu historial local.",
+  "dash.porPagina.nota":
+    "LCP medio por página de entrada, de tu historial local.",
   "dash.ga4.titulo": "Conecta Google Analytics",
   "dash.ga4.texto":
     "Usuarios, sesiones y canales (orgánico, directo, social, de pago) de tu propiedad GA4.",
@@ -92,7 +106,8 @@ const es = {
 
   // ── Rendimiento ──
   "rend.veredicto": "Core Web Vitals de esta página",
-  "rend.veredicto.desc": "LCP, CLS e INP — las tres que usa Google para puntuar la experiencia.",
+  "rend.veredicto.desc":
+    "LCP, CLS e INP — las tres que usa Google para puntuar la experiencia.",
   "rend.lcp": "Pintado del contenido principal",
   "rend.cls": "Peor ráfaga de saltos de maquetación",
   "rend.inp": "Interacción más lenta (p98)",
@@ -140,7 +155,8 @@ const es = {
   "gsc.DESKTOP": "Ordenador",
   "gsc.MOBILE": "Móvil",
   "gsc.TABLET": "Tablet",
-  "gsc.sinDatosPropiedad": "Google todavía no tiene datos de esta propiedad para este periodo.",
+  "gsc.sinDatosPropiedad":
+    "Google todavía no tiene datos de esta propiedad para este periodo.",
   "gsc.sinDatos": "Sin datos en este periodo.",
   "gsc.nota":
     "Datos de la API oficial de Search Console, incluidos los más recientes: Google tarda unos días en consolidarlos, así que los últimos pueden cambiar todavía. El periodo termina ayer.",
@@ -154,7 +170,8 @@ const es = {
     `La cuenta de servicio no tiene acceso a «${sitio}». Añádela como usuario de la propiedad en Search Console (Ajustes → Usuarios y permisos). Si es una propiedad de dominio, el valor debe empezar por sc-domain:.`,
   "gsc.err.google": (estado: number, detalle: string) =>
     `Search Console respondió ${estado}: ${detalle}`,
-  "gsc.err.red": "No se pudo contactar con Google. Comprueba tu conexión a internet.",
+  "gsc.err.red":
+    "No se pudo contactar con Google. Comprueba tu conexión a internet.",
 
   // ── Archivos ──
   "arch.ficheros": (n: number) => `${n.toLocaleString("es-ES")} ficheros`,
@@ -166,7 +183,8 @@ const es = {
   "arch.error": "No se pudo leer el proyecto",
   "arch.leyendo": "Leyendo el proyecto…",
   "arch.vacio": "No se encontró nada que mostrar.",
-  "arch.fuenteGit": "Lo que git no ignora de tu proyecto, leído del disco por el servidor de desarrollo.",
+  "arch.fuenteGit":
+    "Lo que git no ignora de tu proyecto, leído del disco por el servidor de desarrollo.",
   "arch.fuenteDisco":
     "Tu proyecto leído del disco por el servidor de desarrollo (sin dependencias, builds ni secretos).",
   "arch.recortado": (n: number) =>
@@ -219,7 +237,8 @@ const es = {
   "web.err.falta-url": "Falta la URL a comprobar.",
   "web.err.url-invalida": "Esa URL no es válida.",
   "web.err.protocolo": "Solo se aceptan direcciones http:// o https://.",
-  "web.err.red-privada": "Esa dirección apunta a una red local o privada — no se comprueba.",
+  "web.err.red-privada":
+    "Esa dirección apunta a una red local o privada — no se comprueba.",
   "web.err.tiempo": "La web no respondió en 10 segundos.",
   "web.err.sin-conexion": "No se pudo conectar con esa dirección.",
   "web.err.redirecciones": "Demasiadas redirecciones (más de 5).",
@@ -239,26 +258,40 @@ const es = {
   "sesion.abrir": "Abrir majixlab.com/conectar",
   "sesion.copiar": "Copiar código",
   "sesion.paso1": "Abre la dirección con tu cuenta de MAJIX.",
-  "sesion.paso2": "Verifica que el código mostrado coincide con el de esta pantalla.",
-  "sesion.paso3": "Selecciona «Conectar». Este panel se activará automáticamente.",
+  "sesion.paso2":
+    "Verifica que el código mostrado coincide con el de esta pantalla.",
+  "sesion.paso3":
+    "Selecciona «Conectar». Este panel se activará automáticamente.",
   "sesion.caduca": (mmss: string) => `El código caduca en ${mmss}`,
   "sesion.cancelar": "Cancelar",
   "sesion.esperando": "Esperando la autorización…",
-  "sesion.motivo.denegada": "La conexión fue denegada. Si no fue intencionada, inicia sesión de nuevo.",
+  "sesion.motivo.denegada":
+    "La conexión fue denegada. Si no fue intencionada, inicia sesión de nuevo.",
   "sesion.motivo.expirada": "El código ha caducado. Solicita uno nuevo.",
   "sesion.motivo.caducada": "La sesión ha caducado. Inicia sesión de nuevo.",
-  "sesion.motivo.revocada": "La sesión se cerró desde tu panel de MAJIX. Inicia sesión de nuevo.",
-  "sesion.motivo.error": "No se ha podido contactar con MAJIX. Comprueba la conexión e inténtalo de nuevo.",
+  "sesion.motivo.revocada":
+    "La sesión se cerró desde tu panel de MAJIX. Inicia sesión de nuevo.",
+  "sesion.motivo.error":
+    "No se ha podido contactar con MAJIX. Comprueba la conexión e inténtalo de nuevo.",
   "sesion.sinRed.titulo": "No se puede verificar la sesión",
   "sesion.sinRed.texto":
     "MAJIX Tools necesita conexión con MAJIX para verificar la cuenta, y la última verificación tiene más de 24 horas.",
   "sesion.reintentar": "Reintentar",
+  "puerta.texto": "Con tu cuenta de MAJIX. La contraseña no se introduce aquí.",
+  "puerta.abierta":
+    "Hemos abierto majixlab.com en otra pestaña. Inicia sesión con tu cuenta de MAJIX y comprueba que el código que aparece allí coincide con este.",
+  "puerta.bloqueada":
+    "Tu navegador ha bloqueado la ventana emergente. Pulsa el botón para abrir majixlab.com y confirmar el código.",
+  "puerta.abrirDeNuevo": "Abrir de nuevo",
+  "puerta.datos": "Qué datos salen de tu equipo",
+  "puerta.quitar": "¿No quieres usarlo? Ejecuta npx majix-tools remove",
   "sesion.seguro.titulo": "Qué datos salen de tu equipo",
   "sesion.seguro.1":
     "Con cualquier plan: el nombre de tu web y la versión de MAJIX Tools, únicamente para iniciar y mantener la sesión.",
   "sesion.seguro.2":
     "Con Plus y Pro: por cada carga, la ruta sin parámetros y las mediciones (LCP, CLS, INP, TTFB, FPS, fotogramas largos, peticiones, KB y errores).",
-  "sesion.seguro.3": "Nunca: código, archivos, claves, URL completas, cabeceras ni dirección IP.",
+  "sesion.seguro.3":
+    "Nunca: código, archivos, claves, URL completas, cabeceras ni dirección IP.",
   "sesion.seguro.4":
     "El token reside únicamente en tu servidor de desarrollo: ni esta pantalla ni el navegador pueden leerlo.",
   "cuenta.conectadaComo": "Sesión iniciada como",
@@ -288,15 +321,18 @@ const es = {
   "cuenta.enviado.titulo": "Registro de envíos a MAJIX",
   "cuenta.enviado.texto":
     "Cada envío, exactamente como salió de este equipo. No incluye el token, el código de autorización ni claves.",
-  "cuenta.enviado.vacio": "Aún no se ha enviado ninguna medición. Recarga tu web y aparecerá aquí.",
-  "cuenta.enviado.vacioLocal": "Con el plan Libre no se envían mediciones a MAJIX: permanecen en este equipo.",
+  "cuenta.enviado.vacio":
+    "Aún no se ha enviado ninguna medición. Recarga tu web y aparecerá aquí.",
+  "cuenta.enviado.vacioLocal":
+    "Con el plan Libre no se envían mediciones a MAJIX: permanecen en este equipo.",
   "cuenta.col.hora": "Hora",
   "cuenta.col.que": "Concepto",
   "cuenta.col.resultado": "Resultado",
   "cuenta.col.bytes": "Bytes",
   "cuenta.ultimo": "Último envío, sin modificar",
   "cuenta.ok": "Recibido",
-  "cuenta.fallo": (http: number) => (http === 0 ? "Sin conexión" : `Error ${http}`),
+  "cuenta.fallo": (http: number) =>
+    http === 0 ? "Sin conexión" : `Error ${http}`,
   "dash.vivo.titulo": "Panel de MAJIX",
   "dash.vivo.estado": "En vivo",
   "dash.vivo.texto":
@@ -304,7 +340,8 @@ const es = {
   "dash.vivo.ultimo": (hace: string) => `Último envío ${hace}`,
   "dash.vivo.nunca": "Aún no se ha enviado ninguna carga. Recarga tu web.",
   "dash.vivo.abrir": "Abrir mi panel",
-  "dash.vivo.fuera": "Esta web no está incluida en el plan actual: no se envían datos.",
+  "dash.vivo.fuera":
+    "Esta web no está incluida en el plan actual: no se envían datos.",
   "dash.vivo.libreTitulo": "Monitorización en vivo",
   "dash.vivo.libre":
     "Con el plan Libre, las mediciones permanecen en este equipo. Con Plus o Pro se muestran en tiempo real en tu panel de MAJIX y se contrastan con tu dominio publicado.",
@@ -316,7 +353,11 @@ const es = {
   "gsc.plan.comprobar": "Ya he contratado el plan: comprobar",
 };
 
-type Textos = { [K in keyof typeof es]: (typeof es)[K] extends (...a: infer A) => string ? (...a: A) => string : string };
+type Textos = {
+  [K in keyof typeof es]: (typeof es)[K] extends (...a: infer A) => string
+    ? (...a: A) => string
+    : string;
+};
 
 const en: Textos = {
   locale: "en-US",
@@ -339,7 +380,8 @@ const en: Textos = {
   "tab.rendimiento": "Performance",
   "tab.rendimiento.desc": "Core Web Vitals and frames of this page, live",
   "tab.searchConsole": "Search Console",
-  "tab.searchConsole.desc": "Clicks, impressions, CTR and position of your site on Google",
+  "tab.searchConsole.desc":
+    "Clicks, impressions, CTR and position of your site on Google",
   "tab.archivos": "Files",
   "tab.archivos.desc": "Your project tree with the real size of every file",
   "tab.consola": "Console & network",
@@ -347,14 +389,15 @@ const en: Textos = {
   "tab.rutas": "Routes",
   "tab.rutas.desc": "Internal links on this page and the sitemap.xml",
   "tab.otrasWebs": "Other sites",
-  "tab.otrasWebs.desc": "A real HTTP report of any site: response, security, weight",
+  "tab.otrasWebs.desc":
+    "A real HTTP report of any site: response, security, weight",
 
   "nivel.bien": "Good",
   "nivel.mejorable": "Needs work",
   "nivel.mal": "Poor",
   "nivel.esperando": "Waiting…",
   "nivel.noSoportado": "Unavailable",
-  "noSoportado": "Your browser doesn't measure it (try Chrome or Edge)",
+  noSoportado: "Your browser doesn't measure it (try Chrome or Edge)",
 
   actualizar: "Refresh",
   limpiar: "Clear",
@@ -365,7 +408,9 @@ const en: Textos = {
   "dash.titulo": "Dashboard",
   "dash.soloEsta": "This page load",
   "dash.conAnteriores": (n) =>
-    n === 1 ? "This load and the previous one, saved in this browser" : `This load and the previous ${n}, saved in this browser`,
+    n === 1
+      ? "This load and the previous one, saved in this browser"
+      : `This load and the previous ${n}, saved in this browser`,
   "dash.conAnterioresRecorte": (visibles, total) =>
     `This load and the previous ${visibles} (of ${total} saved in this browser)`,
   "dash.curva": "scored with the Lighthouse curve",
@@ -383,14 +428,16 @@ const en: Textos = {
     "Every page load leaves a sample when you hide it: when you reload, switch tabs or close it. Reload a couple of times and the trend shows up here.",
   "dash.trafico": "Traffic",
   "dash.porPagina": "Performance per page",
-  "dash.porPagina.nota": "Average LCP per landing page, from your local history.",
+  "dash.porPagina.nota":
+    "Average LCP per landing page, from your local history.",
   "dash.ga4.titulo": "Connect Google Analytics",
   "dash.ga4.texto":
     "Users, sessions and channels (organic, direct, social, paid) from your GA4 property.",
   "dash.proximamente": "Coming in the next version",
 
   "rend.veredicto": "Core Web Vitals of this page",
-  "rend.veredicto.desc": "LCP, CLS and INP — the three Google uses to score the experience.",
+  "rend.veredicto.desc":
+    "LCP, CLS and INP — the three Google uses to score the experience.",
   "rend.lcp": "Main content painted",
   "rend.cls": "Worst burst of layout shifts",
   "rend.inp": "Slowest interaction (p98)",
@@ -437,7 +484,8 @@ const en: Textos = {
   "gsc.DESKTOP": "Desktop",
   "gsc.MOBILE": "Mobile",
   "gsc.TABLET": "Tablet",
-  "gsc.sinDatosPropiedad": "Google has no data for this property in this period yet.",
+  "gsc.sinDatosPropiedad":
+    "Google has no data for this property in this period yet.",
   "gsc.sinDatos": "No data in this period.",
   "gsc.nota":
     "Data from the official Search Console API, including the freshest days: Google takes a few days to finalise them, so the last ones may still change. The period ends yesterday.",
@@ -449,7 +497,8 @@ const en: Textos = {
     `Google rejected the credentials (${detalle}). Check the service account email and private key.`,
   "gsc.err.acceso": (sitio) =>
     `The service account has no access to “${sitio}”. Add it as a user of the property in Search Console (Settings → Users and permissions). For a domain property the value must start with sc-domain:.`,
-  "gsc.err.google": (estado, detalle) => `Search Console answered ${estado}: ${detalle}`,
+  "gsc.err.google": (estado, detalle) =>
+    `Search Console answered ${estado}: ${detalle}`,
   "gsc.err.red": "Couldn't reach Google. Check your internet connection.",
 
   "arch.ficheros": (n) => `${n.toLocaleString("en-US")} files`,
@@ -461,10 +510,12 @@ const en: Textos = {
   "arch.error": "Couldn't read the project",
   "arch.leyendo": "Reading the project…",
   "arch.vacio": "Nothing to show.",
-  "arch.fuenteGit": "Everything git doesn't ignore in your project, read from disk by the dev server.",
+  "arch.fuenteGit":
+    "Everything git doesn't ignore in your project, read from disk by the dev server.",
   "arch.fuenteDisco":
     "Your project read from disk by the dev server (without dependencies, builds or secrets).",
-  "arch.recortado": (n) => `Very large project: showing the first ${n.toLocaleString("en-US")} files.`,
+  "arch.recortado": (n) =>
+    `Very large project: showing the first ${n.toLocaleString("en-US")} files.`,
 
   "cons.consola": "Console",
   "cons.red": "Network",
@@ -509,7 +560,8 @@ const en: Textos = {
   "web.err.falta-url": "The URL to check is missing.",
   "web.err.url-invalida": "That URL isn't valid.",
   "web.err.protocolo": "Only http:// or https:// addresses are accepted.",
-  "web.err.red-privada": "That address points to a local or private network — it isn't checked.",
+  "web.err.red-privada":
+    "That address points to a local or private network — it isn't checked.",
   "web.err.tiempo": "The site didn't answer within 10 seconds.",
   "web.err.sin-conexion": "Couldn't connect to that address.",
   "web.err.redirecciones": "Too many redirects (more than 5).",
@@ -534,21 +586,34 @@ const en: Textos = {
   "sesion.caduca": (mmss: string) => `The code expires in ${mmss}`,
   "sesion.cancelar": "Cancel",
   "sesion.esperando": "Waiting for authorisation…",
-  "sesion.motivo.denegada": "The connection was denied. If that was unintended, sign in again.",
+  "sesion.motivo.denegada":
+    "The connection was denied. If that was unintended, sign in again.",
   "sesion.motivo.expirada": "The code has expired. Request a new one.",
   "sesion.motivo.caducada": "The session has expired. Sign in again.",
-  "sesion.motivo.revocada": "The session was closed from your MAJIX dashboard. Sign in again.",
-  "sesion.motivo.error": "MAJIX could not be reached. Check your connection and try again.",
+  "sesion.motivo.revocada":
+    "The session was closed from your MAJIX dashboard. Sign in again.",
+  "sesion.motivo.error":
+    "MAJIX could not be reached. Check your connection and try again.",
   "sesion.sinRed.titulo": "The session cannot be verified",
   "sesion.sinRed.texto":
     "MAJIX Tools needs a connection to MAJIX to verify the account, and the last verification is more than 24 hours old.",
   "sesion.reintentar": "Try again",
+  "puerta.texto":
+    "With your MAJIX account. Your password is never entered here.",
+  "puerta.abierta":
+    "We have opened majixlab.com in another tab. Sign in with your MAJIX account and check that the code shown there matches this one.",
+  "puerta.bloqueada":
+    "Your browser blocked the pop-up. Press the button to open majixlab.com and confirm the code.",
+  "puerta.abrirDeNuevo": "Open again",
+  "puerta.datos": "What data leaves your computer",
+  "puerta.quitar": "Don't want to use it? Run npx majix-tools remove",
   "sesion.seguro.titulo": "What data leaves your computer",
   "sesion.seguro.1":
     "On any plan: your site's name and the MAJIX Tools version, solely to start and maintain the session.",
   "sesion.seguro.2":
     "On Plus and Pro: for each page load, the path without parameters and the measurements (LCP, CLS, INP, TTFB, FPS, long frames, requests, KB and errors).",
-  "sesion.seguro.3": "Never: code, files, keys, full URLs, headers or an IP address.",
+  "sesion.seguro.3":
+    "Never: code, files, keys, full URLs, headers or an IP address.",
   "sesion.seguro.4":
     "The token resides only in your dev server: neither this screen nor the browser can read it.",
   "cuenta.conectadaComo": "Signed in as",
@@ -578,15 +643,18 @@ const en: Textos = {
   "cuenta.enviado.titulo": "Record of submissions to MAJIX",
   "cuenta.enviado.texto":
     "Every submission, exactly as it left this computer. It does not include the token, the authorisation code or any keys.",
-  "cuenta.enviado.vacio": "No measurement has been sent yet. Reload your site and it will appear here.",
-  "cuenta.enviado.vacioLocal": "On the Free plan no measurements are sent to MAJIX: they stay on this computer.",
+  "cuenta.enviado.vacio":
+    "No measurement has been sent yet. Reload your site and it will appear here.",
+  "cuenta.enviado.vacioLocal":
+    "On the Free plan no measurements are sent to MAJIX: they stay on this computer.",
   "cuenta.col.hora": "Time",
   "cuenta.col.que": "Item",
   "cuenta.col.resultado": "Result",
   "cuenta.col.bytes": "Bytes",
   "cuenta.ultimo": "Last submission, unmodified",
   "cuenta.ok": "Received",
-  "cuenta.fallo": (http: number) => (http === 0 ? "No connection" : `Error ${http}`),
+  "cuenta.fallo": (http: number) =>
+    http === 0 ? "No connection" : `Error ${http}`,
   "dash.vivo.titulo": "MAJIX dashboard",
   "dash.vivo.estado": "Live",
   "dash.vivo.texto":
@@ -594,7 +662,8 @@ const en: Textos = {
   "dash.vivo.ultimo": (hace: string) => `Last sent ${hace}`,
   "dash.vivo.nunca": "No page load has been sent yet. Reload your site.",
   "dash.vivo.abrir": "Open my dashboard",
-  "dash.vivo.fuera": "This site is not included in the current plan: no data is sent.",
+  "dash.vivo.fuera":
+    "This site is not included in the current plan: no data is sent.",
   "dash.vivo.libreTitulo": "Live monitoring",
   "dash.vivo.libre":
     "On the Free plan, measurements stay on this computer. With Plus or Pro they are shown in real time in your MAJIX dashboard and compared with your published domain.",
@@ -621,7 +690,9 @@ function detectar(): Idioma {
   }
   const web = document.documentElement.lang?.toLowerCase() ?? "";
   if (web) return web.startsWith("es") ? "es" : "en";
-  return (navigator.language ?? "").toLowerCase().startsWith("es") ? "es" : "en";
+  return (navigator.language ?? "").toLowerCase().startsWith("es")
+    ? "es"
+    : "en";
 }
 
 type Contexto = {

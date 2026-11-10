@@ -7,7 +7,7 @@
 Herramienta gratuita y de código abierto que mide tu web en tu propio equipo mientras la construyes: Web Vitals, FPS, red, consola y archivos. Con los planes Plus y Pro, las mediciones llegan en tiempo real a tu panel de MAJIX y se contrastan con tu dominio publicado.
 
 [![Licencia MIT](https://img.shields.io/badge/licencia-MIT-7b39fc)](LICENSE)
-[![Versión](https://img.shields.io/badge/versi%C3%B3n-0.2.0%20preview-a484d7)](CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versi%C3%B3n-0.2.1%20preview-a484d7)](CHANGELOG.md)
 [![Vite 5+](https://img.shields.io/badge/Vite-%E2%89%A5%205-646cff)](https://vite.dev)
 [![Node 18.18+](https://img.shields.io/badge/Node-%E2%89%A5%2018.18-339933)](https://nodejs.org)
 [![Cero bytes en producción](https://img.shields.io/badge/producci%C3%B3n-0%20bytes-3ddc84)](#privacidad-y-seguridad)
@@ -41,7 +41,7 @@ Eso es todo. `init` detecta tu gestor de paquetes (npm, pnpm, yarn o bun) y el t
 <summary><b>Instalación manual, paso a paso</b></summary>
 
 ```bash
-npm install -D github:majixgroup/majix-tools#v0.2.0     # o: pnpm add -D · yarn add -D · bun add -d
+npm install -D github:majixgroup/majix-tools#v0.2.1     # o: pnpm add -D · yarn add -D · bun add -d
 ```
 
 ```ts
@@ -74,12 +74,12 @@ MAJIX Tools se utiliza con tu cuenta de MAJIX, la misma de [majixlab.com](https:
 <td width="50%"><img src="docs/capturas/codigo-es.webp" alt="El código de un solo uso que se confirma en majixlab.com"></td>
 </tr>
 <tr>
-<td><b>1.</b> Abre tu web en desarrollo y pulsa el botón de MAJIX Tools, abajo en el centro. Pulsa <b>Iniciar sesión</b>.</td>
-<td><b>2.</b> Aparece un código (<code>BCDF-GHJK</code>). Compruébalo en <code>majixlab.com/conectar</code>, indica opcionalmente el dominio publicado de tu web y pulsa <b>Conectar</b>. El panel se abre solo.</td>
+<td><b>1.</b> Abre tu web en desarrollo: antes de mostrar nada, MAJIX Tools presenta la pantalla de inicio de sesión. Pulsa <b>Iniciar sesión</b>.</td>
+<td><b>2.</b> Aparece el código (<code>BCDF-GHJK</code>) y se abre sola <code>majixlab.com/conectar</code> en otra pestaña. Inicia sesión con tu cuenta, comprueba que el código coincide, indica opcionalmente el dominio publicado de tu web y pulsa <b>Conectar</b>. El panel se abre solo.</td>
 </tr>
 </table>
 
-Sin sesión, el panel solo muestra esa pantalla, y los endpoints del plugin que leen tu disco o utilizan tus claves responden `401`.
+Sin sesión no hay panel, ni botón, ni menú: solo esa pantalla, y los endpoints del plugin que leen tu disco o utilizan tus claves responden `401`. Si no quieres usar la herramienta, `npx majix-tools remove` la quita.
 
 ## Qué incluye
 

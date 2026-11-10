@@ -1200,7 +1200,7 @@ function majixTools(opcionesDadas = {}) {
       cuenta = new Cuenta({
         api: apiPermitida(process.env.MAJIX_TOOLS_API) ?? API_POR_DEFECTO,
         raiz: config.root,
-        version: "0.2.0",
+        version: "0.2.1",
         etiqueta: nombreProyecto ?? void 0
       });
       void cuenta.arrancar().catch(() => {
@@ -1307,7 +1307,7 @@ function majixTools(opcionesDadas = {}) {
               if (!soloGet()) return;
               return enviarJson(res, 200, {
                 ok: true,
-                version: "0.2.0",
+                version: "0.2.1",
                 raiz: config.root,
                 inyecta: opciones.inyectar,
                 red: opciones.red,
@@ -1327,7 +1327,7 @@ function majixTools(opcionesDadas = {}) {
           const es = (process.env.LC_ALL ?? process.env.LANG ?? "").toLowerCase().startsWith("es");
           const texto = es ? "el panel est\xE1 abajo en el centro de tu web" : "the panel is at the bottom centre of your site";
           config.logger.info(
-            `  \x1B[35m\u279C\x1B[0m  \x1B[1mMAJIX Tools\x1B[0m v${"0.2.0"}: ${texto}`
+            `  \x1B[35m\u279C\x1B[0m  \x1B[1mMAJIX Tools\x1B[0m v${"0.2.1"}: ${texto}`
           );
         }, 0);
       });

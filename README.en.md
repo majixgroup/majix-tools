@@ -7,7 +7,7 @@
 A free, open-source tool that measures your site on your own computer while you build it: Web Vitals, FPS, network, console and files. With the Plus and Pro plans, the measurements reach your MAJIX dashboard in real time and are compared with your published domain.
 
 [![MIT license](https://img.shields.io/badge/license-MIT-7b39fc)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.2.0%20preview-a484d7)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.1%20preview-a484d7)](CHANGELOG.md)
 [![Vite 5+](https://img.shields.io/badge/Vite-%E2%89%A5%205-646cff)](https://vite.dev)
 [![Node 18.18+](https://img.shields.io/badge/Node-%E2%89%A5%2018.18-339933)](https://nodejs.org)
 [![Zero bytes in production](https://img.shields.io/badge/production-0%20bytes-3ddc84)](#privacy-and-security)
@@ -41,7 +41,7 @@ That is all. `init` detects your package manager (npm, pnpm, yarn or bun) and yo
 <summary><b>Manual installation, step by step</b></summary>
 
 ```bash
-npm install -D github:majixgroup/majix-tools#v0.2.0     # or: pnpm add -D · yarn add -D · bun add -d
+npm install -D github:majixgroup/majix-tools#v0.2.1     # or: pnpm add -D · yarn add -D · bun add -d
 ```
 
 ```ts
@@ -74,12 +74,12 @@ MAJIX Tools is used with your MAJIX account, the same one as [majixlab.com](http
 <td width="50%"><img src="docs/capturas/codigo-en.webp" alt="The single-use code that is confirmed at majixlab.com"></td>
 </tr>
 <tr>
-<td><b>1.</b> Open your site in development and press the MAJIX Tools button, bottom centre. Press <b>Sign in</b>.</td>
-<td><b>2.</b> A code (<code>BCDF-GHJK</code>) appears. Check it at <code>majixlab.com/conectar</code>, optionally enter your site's published domain and press <b>Connect</b>. The panel opens by itself.</td>
+<td><b>1.</b> Open your site in development: before showing anything, MAJIX Tools presents the sign-in screen. Press <b>Sign in</b>.</td>
+<td><b>2.</b> The code (<code>BCDF-GHJK</code>) appears and <code>majixlab.com/conectar</code> opens by itself in another tab. Sign in with your account, check that the code matches, optionally enter your site's published domain and press <b>Connect</b>. The panel opens by itself.</td>
 </tr>
 </table>
 
-Without a session, the panel only shows that screen, and the plugin endpoints that read your disk or use your keys answer `401`.
+Without a session there is no panel, no button and no menu: only that screen, and the plugin endpoints that read your disk or use your keys answer `401`. If you do not want to use the tool, `npx majix-tools remove` removes it.
 
 ## What is included
 

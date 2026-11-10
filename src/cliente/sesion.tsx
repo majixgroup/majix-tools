@@ -27,7 +27,8 @@ export type Sesion = Instantanea;
 type Contexto = {
   /** `null` mientras se hace la primera pregunta. */
   sesion: Sesion | null;
-  iniciar: () => Promise<void>;
+  /** Pide el código y devuelve la sesión resultante (con el código y su enlace), para poder abrir majixlab.com al instante. */
+  iniciar: () => Promise<Sesion | null>;
   cancelar: () => Promise<void>;
   cerrar: () => Promise<void>;
   /** Vuelve a preguntar a MAJIX (por ejemplo, tras comprar un plan). */
@@ -57,12 +58,16 @@ export function ProveedorSesion({ children }: { children: ReactNode }) {
 
   const aplicar = useCallback((s: Sesion | null) => {
     if (!s) return;
-    if (s.estado === "conectada" && antes.current !== "conectada") reanudarEnvio();
+    if (s.estado === "conectada" && antes.current !== "conectada")
+      reanudarEnvio();
     antes.current = s.estado;
     setSesion(s);
   }, []);
 
-  const leer = useCallback(async () => aplicar(await pedir("sesion", false)), [aplicar]);
+  const leer = useCallback(
+    async () => aplicar(await pedir("sesion", false)),
+    [aplicar],
+  );
 
   /* Cada 2 s mientras se espera la aprobación; despacio el resto del tiempo. */
   const estado = sesion?.estado;
@@ -98,7 +103,11 @@ export function ProveedorSesion({ children }: { children: ReactNode }) {
   const valor = useMemo<Contexto>(
     () => ({
       sesion,
-      iniciar: async () => aplicar(await pedir("sesion/iniciar", true)),
+      iniciar: async () => {
+        const s = await pedir("sesion/iniciar", true);
+        aplicar(s);
+        return s;
+      },
       cancelar: async () => aplicar(await pedir("sesion/cancelar", true)),
       cerrar: async () => aplicar(await pedir("sesion/cerrar", true)),
       refrescar,

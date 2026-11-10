@@ -432,7 +432,7 @@ function textos(idioma) {
 }
 
 // src/cli/index.ts
-var VERSION = "0.2.0";
+var VERSION = "0.2.1";
 function fuenteDesde(valor) {
   if (/^[a-z][a-z0-9+.-]*:/i.test(valor) && !/^[a-z]:[\\/]/i.test(valor)) return valor;
   return isAbsolute(valor) ? valor : resolve(process.cwd(), valor);

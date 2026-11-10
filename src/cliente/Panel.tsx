@@ -7,7 +7,6 @@ import {
   Globe2,
   LayoutDashboard,
   Linkedin,
-  Lock,
   Maximize2,
   Minimize2,
   Route,
@@ -57,15 +56,60 @@ type PestanaId =
   | "otras-webs"
   | "cuenta";
 
-const PESTANAS: { id: PestanaId; etiqueta: Clave; descripcion: Clave; Icono: LucideIcon }[] = [
-  { id: "dashboard", etiqueta: "tab.dashboard", descripcion: "tab.dashboard.desc", Icono: LayoutDashboard },
-  { id: "rendimiento", etiqueta: "tab.rendimiento", descripcion: "tab.rendimiento.desc", Icono: Gauge },
-  { id: "search-console", etiqueta: "tab.searchConsole", descripcion: "tab.searchConsole.desc", Icono: Search },
-  { id: "archivos", etiqueta: "tab.archivos", descripcion: "tab.archivos.desc", Icono: FolderTree },
-  { id: "consola", etiqueta: "tab.consola", descripcion: "tab.consola.desc", Icono: Terminal },
-  { id: "rutas", etiqueta: "tab.rutas", descripcion: "tab.rutas.desc", Icono: Route },
-  { id: "otras-webs", etiqueta: "tab.otrasWebs", descripcion: "tab.otrasWebs.desc", Icono: Globe2 },
-  { id: "cuenta", etiqueta: "tab.cuenta", descripcion: "tab.cuenta.desc", Icono: UserRound },
+const PESTANAS: {
+  id: PestanaId;
+  etiqueta: Clave;
+  descripcion: Clave;
+  Icono: LucideIcon;
+}[] = [
+  {
+    id: "dashboard",
+    etiqueta: "tab.dashboard",
+    descripcion: "tab.dashboard.desc",
+    Icono: LayoutDashboard,
+  },
+  {
+    id: "rendimiento",
+    etiqueta: "tab.rendimiento",
+    descripcion: "tab.rendimiento.desc",
+    Icono: Gauge,
+  },
+  {
+    id: "search-console",
+    etiqueta: "tab.searchConsole",
+    descripcion: "tab.searchConsole.desc",
+    Icono: Search,
+  },
+  {
+    id: "archivos",
+    etiqueta: "tab.archivos",
+    descripcion: "tab.archivos.desc",
+    Icono: FolderTree,
+  },
+  {
+    id: "consola",
+    etiqueta: "tab.consola",
+    descripcion: "tab.consola.desc",
+    Icono: Terminal,
+  },
+  {
+    id: "rutas",
+    etiqueta: "tab.rutas",
+    descripcion: "tab.rutas.desc",
+    Icono: Route,
+  },
+  {
+    id: "otras-webs",
+    etiqueta: "tab.otrasWebs",
+    descripcion: "tab.otrasWebs.desc",
+    Icono: Globe2,
+  },
+  {
+    id: "cuenta",
+    etiqueta: "tab.cuenta",
+    descripcion: "tab.cuenta.desc",
+    Icono: UserRound,
+  },
 ];
 
 /* Curva de salida fuerte: arranca rápido y frena largo. */
@@ -135,10 +179,16 @@ function PantallaCarga({ reducido }: { reducido: boolean }) {
         <div className="mt-6 h-[3px] w-40 overflow-hidden rounded-full bg-white/[0.08]">
           <motion.span
             className="block h-full w-full origin-left rounded-full"
-            style={{ background: "linear-gradient(90deg, var(--brand), var(--brand-soft))" }}
+            style={{
+              background:
+                "linear-gradient(90deg, var(--brand), var(--brand-soft))",
+            }}
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: reducido ? 0.3 : 0.95, ease: [0.65, 0, 0.35, 1] }}
+            transition={{
+              duration: reducido ? 0.3 : 0.95,
+              ease: [0.65, 0, 0.35, 1],
+            }}
           />
         </div>
       </div>
@@ -151,10 +201,14 @@ export default function Panel() {
   const [abierto, setAbierto] = useState(false);
   const [pestana, setPestana] = useState<PestanaId>(() => {
     const guardada = leer("majix-tools:pestana");
-    return PESTANAS.some((p) => p.id === guardada) ? (guardada as PestanaId) : "dashboard";
+    return PESTANAS.some((p) => p.id === guardada)
+      ? (guardada as PestanaId)
+      : "dashboard";
   });
   const [cargando, setCargando] = useState(false);
-  const [ampliado, setAmpliado] = useState(() => leer("majix-tools:ampliado") === "1");
+  const [ampliado, setAmpliado] = useState(
+    () => leer("majix-tools:ampliado") === "1",
+  );
   const yaCargado = useRef(false);
   const m = useMetricas();
   const { sesion } = useSesion();
@@ -189,17 +243,41 @@ export default function Panel() {
 
   useEffect(() => {
     if (!cargando) return;
-    const id = window.setTimeout(() => setCargando(false), reducido ? 450 : 1150);
+    const id = window.setTimeout(
+      () => setCargando(false),
+      reducido ? 450 : 1150,
+    );
     return () => window.clearTimeout(id);
   }, [cargando, reducido]);
+
+  /* Al conectarse (no al cargar con la sesión ya iniciada), el panel se abre solo: es lo que la persona espera
+     después de confirmar el código en majixlab.com. */
+  const estabaConectada = useRef<boolean | null>(null);
+  useEffect(() => {
+    if (!sesion) return;
+    if (estabaConectada.current === false && conectada) {
+      setAbierto(true);
+      if (!yaCargado.current) {
+        yaCargado.current = true;
+        setCargando(true);
+      }
+    }
+    estabaConectada.current = conectada;
+  }, [sesion, conectada]);
 
   /* Escape cierra, como cualquier ventana que se respete. */
   useEffect(() => {
     if (!abierto) return;
-    const alPulsar = (e: KeyboardEvent) => e.key === "Escape" && setAbierto(false);
+    const alPulsar = (e: KeyboardEvent) =>
+      e.key === "Escape" && setAbierto(false);
     window.addEventListener("keydown", alPulsar);
     return () => window.removeEventListener("keydown", alPulsar);
   }, [abierto]);
+
+  /* Sin sesión no hay panel, ni botón, ni menú: solo la puerta, a pantalla completa. Mientras se hace la primera
+     comprobación, nada (así no parpadea la puerta a quien ya tiene sesión). */
+  if (!sesion) return null;
+  if (!conectada) return <PantallaSesion />;
 
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-4 z-[2147483000] flex justify-center px-2">
@@ -218,18 +296,27 @@ export default function Panel() {
                   : "h-[min(74vh,560px)] w-[min(96vw,900px)]"
               }`}
               style={{ position: "absolute", transformOrigin: "50% 100%" }}
-              initial={reducido ? { opacity: 0 } : { opacity: 0, y: 14, scale: 0.97 }}
+              initial={
+                reducido ? { opacity: 0 } : { opacity: 0, y: 14, scale: 0.97 }
+              }
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={
                 reducido
                   ? { opacity: 0, transition: { duration: 0.12 } }
-                  : { opacity: 0, y: 10, scale: 0.98, transition: { duration: 0.18, ease: CURVA } }
+                  : {
+                      opacity: 0,
+                      y: 10,
+                      scale: 0.98,
+                      transition: { duration: 0.18, ease: CURVA },
+                    }
               }
               transition={{ duration: 0.32, ease: CURVA }}
             >
               <span aria-hidden className="filo-superior" />
 
-              <AnimatePresence>{cargando && <PantallaCarga reducido={reducido} />}</AnimatePresence>
+              <AnimatePresence>
+                {cargando && <PantallaCarga reducido={reducido} />}
+              </AnimatePresence>
 
               {/* ── LA COLUMNA DE HERRAMIENTAS ── */}
               <nav
@@ -252,14 +339,11 @@ export default function Panel() {
                     <button
                       key={id}
                       onClick={() => elegir(id)}
-                      disabled={!conectada}
                       aria-label={t(etiqueta) as string}
-                      aria-current={activa && conectada ? "page" : undefined}
-                      className={`group relative grid h-10 w-10 place-items-center rounded-xl ${
-                        conectada ? "" : "cursor-not-allowed opacity-40"
-                      }`}
+                      aria-current={activa ? "page" : undefined}
+                      className="group relative grid h-10 w-10 place-items-center rounded-xl"
                     >
-                      {activa && conectada && (
+                      {activa && (
                         <motion.span
                           layoutId="majix-tools-activa"
                           aria-hidden
@@ -268,7 +352,10 @@ export default function Panel() {
                             background:
                               "linear-gradient(145deg, color-mix(in oklab, var(--brand) 32%, transparent), color-mix(in oklab, var(--brand) 12%, transparent))",
                           }}
-                          transition={{ duration: reducido ? 0 : 0.35, ease: CURVA }}
+                          transition={{
+                            duration: reducido ? 0 : 0.35,
+                            ease: CURVA,
+                          }}
                         />
                       )}
                       <Icono
@@ -316,21 +403,13 @@ export default function Panel() {
               <div className="relative z-10 flex min-w-0 flex-1 flex-col">
                 <header className="flex h-14 shrink-0 items-center justify-between gap-3 border-b border-white/[0.08] px-4">
                   <div className="flex min-w-0 items-center gap-3">
-                    {conectada ? (
-                      <actual.Icono className="h-4 w-4 shrink-0 text-[color:var(--brand-soft)]" />
-                    ) : (
-                      <Lock className="h-4 w-4 shrink-0 text-[color:var(--brand-soft)]" />
-                    )}
+                    <actual.Icono className="h-4 w-4 shrink-0 text-[color:var(--brand-soft)]" />
                     <div className="min-w-0">
                       <p className="truncate text-[14px] font-bold leading-tight text-foreground">
-                        {conectada ? (t(actual.etiqueta) as string) : t("sesion.iniciar")}
+                        {t(actual.etiqueta) as string}
                       </p>
                       <p className="truncate text-[11px] leading-tight text-muted-foreground">
-                        {conectada
-                          ? (t(actual.descripcion) as string)
-                          : sesion?.estado === "esperando"
-                            ? t("sesion.esperando")
-                            : t("sesion.cabecera")}
+                        {t(actual.descripcion) as string}
                       </p>
                     </div>
                   </div>
@@ -350,12 +429,18 @@ export default function Panel() {
                     </a>
                     <button
                       onClick={alternarAmpliado}
-                      aria-label={ampliado ? t("panel.reducir") : t("panel.ampliar")}
+                      aria-label={
+                        ampliado ? t("panel.reducir") : t("panel.ampliar")
+                      }
                       title={ampliado ? t("panel.reducir") : t("panel.ampliar")}
                       aria-pressed={ampliado}
                       className="grid h-8 w-8 place-items-center rounded-lg text-foreground/55 transition-colors hover:bg-white/[0.07] hover:text-foreground"
                     >
-                      {ampliado ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+                      {ampliado ? (
+                        <Minimize2 className="h-4 w-4" />
+                      ) : (
+                        <Maximize2 className="h-4 w-4" />
+                      )}
                     </button>
                     <button
                       onClick={() => setAbierto(false)}
@@ -369,11 +454,6 @@ export default function Panel() {
                 </header>
 
                 <div className="relative min-h-0 flex-1">
-                  {!conectada ? (
-                    <div className="absolute inset-0">
-                      <PantallaSesion />
-                    </div>
-                  ) : (
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.div
                       key={pestana}
@@ -402,7 +482,6 @@ export default function Panel() {
                       )}
                     </motion.div>
                   </AnimatePresence>
-                  )}
                 </div>
 
                 <footer className="flex h-8 shrink-0 items-center justify-between gap-3 border-t border-white/[0.08] bg-black/20 px-4 text-[10.5px] text-muted-foreground">
@@ -412,7 +491,9 @@ export default function Panel() {
                       className="h-1.5 w-1.5 shrink-0 rounded-full"
                       style={{ background: COLOR_NIVEL.bien }}
                     />
-                    <span className="truncate">{t("panel.soloDesarrollo")}</span>
+                    <span className="truncate">
+                      {t("panel.soloDesarrollo")}
+                    </span>
                   </span>
                   <div className="flex shrink-0 items-center gap-3">
                     <div
@@ -485,14 +566,10 @@ export default function Panel() {
               }}
             />
             <Logo className="relative h-5 w-5" />
-            {conectada ? (
-              <span className="font-mono text-[12px] font-bold tabular-nums text-foreground/90">
-                {!m.soporte.lcp || m.lcp == null ? "—" : `${m.lcp} ms`}
-              </span>
-            ) : (
-              <Lock className="h-3.5 w-3.5 text-[color:var(--brand-soft)]" aria-hidden />
-            )}
-            {conectada && general && (
+            <span className="font-mono text-[12px] font-bold tabular-nums text-foreground/90">
+              {!m.soporte.lcp || m.lcp == null ? "—" : `${m.lcp} ms`}
+            </span>
+            {general && (
               <span
                 aria-hidden
                 className="h-2 w-2 rounded-full"
