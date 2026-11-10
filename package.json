@@ -1,6 +1,6 @@
 {
   "name": "majix-tools",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Panel de desarrollo para webs hechas con Vite: Web Vitals, Search Console, archivos, consola, red y rutas mientras construyes. Cero bytes en producción.",
   "keywords": [
     "vite",

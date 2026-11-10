@@ -255,7 +255,7 @@ const es = {
   "sesion.iniciar": "Iniciar sesión",
   "sesion.iniciando": "Solicitando el código…",
   "sesion.confirma": "Confirma este código en majixlab.com",
-  "sesion.abrir": "Abrir majixlab.com/conectar",
+  "sesion.abrir": "Abrir majixlab.com/devtool/conectar",
   "sesion.copiar": "Copiar código",
   "sesion.paso1": "Abre la dirección con tu cuenta de MAJIX.",
   "sesion.paso2":
@@ -578,7 +578,7 @@ const en: Textos = {
   "sesion.iniciar": "Sign in",
   "sesion.iniciando": "Requesting the code…",
   "sesion.confirma": "Confirm this code at majixlab.com",
-  "sesion.abrir": "Open majixlab.com/conectar",
+  "sesion.abrir": "Open majixlab.com/devtool/conectar",
   "sesion.copiar": "Copy code",
   "sesion.paso1": "Open the address with your MAJIX account.",
   "sesion.paso2": "Verify that the code shown matches the one on this screen.",

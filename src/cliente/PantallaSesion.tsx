@@ -22,7 +22,7 @@ import { useSesion, type Sesion } from "./sesion";
  * «Iniciar sesión» y un botón— y nada más.
  *
  *   1. Pulsas «Iniciar sesión»: se pide un código y SE ABRE SOLA la página de
- *      MAJIX (`majixlab.com/conectar?codigo=…`) en otra pestaña.
+ *      MAJIX (`majixlab.com/devtool/conectar?codigo=…`) en otra pestaña.
  *   2. Allí inicias sesión con tu cuenta; la página te enseña el código y qué
  *      se va a conectar. Pulsas «Conectar».
  *   3. Esta pantalla lo detecta sola y se abre el panel. Nunca se escribe una
@@ -173,7 +173,7 @@ export default function PantallaSesion() {
 
   if (!sesion) return null;
 
-  /** Vuelve a abrir majixlab.com/conectar con el código ya puesto (desde un clic: siempre se permite). */
+  /** Vuelve a abrir majixlab.com/devtool/conectar con el código ya puesto (desde un clic: siempre se permite). */
   const abrirDeNuevo = (url: string | null) => {
     if (!url) return;
     window.open(url, "_blank", "noopener");
