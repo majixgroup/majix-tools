@@ -113,7 +113,7 @@ The Free plan measures only on your computer: **it sends no measurement to MAJIX
 
 | | Free | Plus | Pro |
 |---|:---:|:---:|:---:|
-| Price (excluding VAT) | €0 | €4.95/month | €9.95/month |
+| Price (excluding VAT) | €0 | €5.99/month | €9.95/month |
 | Full panel on your computer | ✓ | ✓ | ✓ |
 | Real-time statistics in your MAJIX dashboard | — | ✓ | ✓ |
 | Comparison with the published domain | — | ✓ | ✓ |

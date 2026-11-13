@@ -10,7 +10,7 @@
 
 ## Planes / Plans (precios sin IVA / excl. VAT)
 - Libre / Free 0 €: panel completo en local, 1 web; no envía mediciones a MAJIX / full local panel, 1 site; sends no measurements to MAJIX.
-- Plus 4,95 €/mes: + tiempo real en el panel de MAJIX y contraste con el dominio publicado, Search Console, 3 webs, 90 días / + real time in the MAJIX dashboard and comparison with the published domain, Search Console, 3 sites, 90 days.
+- Plus 5,99 €/mes: + tiempo real en el panel de MAJIX y contraste con el dominio publicado, Search Console, 3 webs, 90 días / + real time in the MAJIX dashboard and comparison with the published domain, Search Console, 3 sites, 90 days.
 - Pro 9,95 €/mes: + 10 webs, 12 meses; CRM propio próximamente.
 - Se pagan solo en https://majixlab.com/open-source/majix-tools/planes, nunca dentro de la herramienta. / Paid only on the website, never in the tool.
 

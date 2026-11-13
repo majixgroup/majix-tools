@@ -113,7 +113,7 @@ El plan Libre mide únicamente en tu equipo: **no envía ninguna medición a MAJ
 
 | | Libre | Plus | Pro |
 |---|:---:|:---:|:---:|
-| Precio (sin IVA) | 0 € | 4,95 €/mes | 9,95 €/mes |
+| Precio (sin IVA) | 0 € | 5,99 €/mes | 9,95 €/mes |
 | Panel completo en tu equipo | ✓ | ✓ | ✓ |
 | Estadísticas en tiempo real en tu panel de MAJIX | — | ✓ | ✓ |
 | Contraste con el dominio publicado | — | ✓ | ✓ |
